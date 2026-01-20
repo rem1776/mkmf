@@ -9,6 +9,7 @@
 FC = mpiifx
 CC = mpiicx
 LD = mpiifx
+AR = llvm-ar
 
 #######################
 # Build target macros
@@ -50,9 +51,11 @@ NETCDF =             # If value is '3' and CPPDEFS contains
                      # '-Duse_netCDF', then the additional cpp macro
                      # '-Duse_LARGEFILE' is added to the CPPDEFS macro.
 
-                     # A list of -I Include directories to be added to the
-                     # the compile command.
-INCLUDES := $(shell pkg-config --cflags hdf5_fortran) $(shell nf-config --flibs) $(shell nc-config --cflags) $(shell nf-config --fflags) -I/opt/views/view/include
+LIB_NAMES = hdf5_fortran netcdf netcdf-fortran yaml-0.1 # names of libraries (according to pkg-config) to link against
+
+                     # Include paths for any linked libraries
+                     # Should use pkg-config to query for the right path
+INCLUDES := $(shell pkg-config --cflags $(LIB_NAMES))
 
                      # The Intel Instruction Set Archetecture (ISA) compile
                      # option to use.
@@ -158,7 +161,7 @@ LDFLAGS_VERBOSE := -Wl,-V,--verbose,-cref,-M
 LDFLAGS_COVERAGE = -prof-gen=srcpos
 
 # List of -L library directories to be added to the compile and linking commands
-LIBS := -L/opt/views/view/lib -lyaml -lhdf5 -lhdf5_hl_fortran -lhdf5_hl -lhdf5_fortran $(shell nf-config --flibs) $(shell nc-config --libs)
+LIBS := $(shell pkg-config --libs $(LIB_NAMES))
 
 # Get compile flags based on target macros.
 ifdef REPRO
