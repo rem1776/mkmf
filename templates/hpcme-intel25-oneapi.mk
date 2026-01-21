@@ -8,11 +8,8 @@
 ############
 FC = mpiifx
 CC = mpiicx
-LD = /opt/intel/oneapi/compiler/latest/bin/compiler/ld.lld
+LD = mpiifx
 AR = /opt/intel/oneapi/compiler/latest/bin/compiler/llvm-ar
-
-# TODO this should be set in the hpcme dockerfiles instead
-export PKG_CONFIG_PATH = "/opt/spack-environment/.spack-env/view/lib/pkgconfig/"
 
 #######################
 # Build target macros
@@ -58,7 +55,7 @@ LIB_NAMES = hdf5_fortran netcdf netcdf-fortran yaml-0.1 # names of libraries (ac
 
                      # Include paths for any linked libraries
                      # Should use pkg-config to query for the right path
-INCLUDES := $(shell pkg-config --cflags $(LIB_NAMES))
+INCLUDES := $(shell pkg-config --cflags $(LIB_NAMES)) -I/opt/spack-environment/.spack-env/view/include
 
                      # The Intel Instruction Set Archetecture (ISA) compile
                      # option to use.
@@ -164,7 +161,7 @@ LDFLAGS_VERBOSE := -Wl,-V,--verbose,-cref,-M
 LDFLAGS_COVERAGE = -prof-gen=srcpos
 
 # List of -L library directories to be added to the compile and linking commands
-LIBS := $(shell pkg-config --libs $(LIB_NAMES))
+LIBS := $(shell pkg-config --libs $(LIB_NAMES)) -L/opt/spack-environment/.spack-env/view/lib
 
 # Get compile flags based on target macros.
 ifdef REPRO
