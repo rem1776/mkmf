@@ -12,7 +12,7 @@ LD = /opt/intel/oneapi/compiler/latest/bin/compiler/lld
 AR = /opt/intel/oneapi/compiler/latest/bin/compiler/llvm-ar
 
 # TODO this should be set in the hpcme dockerfiles instead
-PKG_CONFIG_PATH = "${PKG_CONFIG_PATH}:/opt/spack-environment/.spack-env/view/lib/pkgconfig/"
+PKG_CONFIG_PATH = "/opt/spack-environment/.spack-env/view/lib/pkgconfig/"
 export PKG_CONFIG_PATH
 
 #######################
