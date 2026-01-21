@@ -9,6 +9,7 @@
 FC = mpiifx
 CC = mpiicx
 LD = mpiifx
+AR = /opt/intel/oneapi/compiler/latest/bin/compiler/llvm-ar
 
 #######################
 # Build target macros
