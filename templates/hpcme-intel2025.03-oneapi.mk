@@ -8,7 +8,7 @@
 ############
 FC = mpiifx
 CC = mpiicx
-LD = mpiifx
+LD = /opt/intel/oneapi/compiler/latest/bin/compiler/lld
 AR = /opt/intel/oneapi/compiler/latest/bin/compiler/llvm-ar
 
 #######################
@@ -153,7 +153,7 @@ FFLAGS_TEST := $(FFLAGS_OPT)
 CFLAGS_TEST := $(CFLAGS_OPT)
 
 # Linking flags
-LDFLAGS := 
+LDFLAGS :=
 LDFLAGS_OPENMP := -qopenmp
 LDFLAGS_VERBOSE := -Wl,-V,--verbose,-cref,-M
 LDFLAGS_COVERAGE = -prof-gen=srcpos
