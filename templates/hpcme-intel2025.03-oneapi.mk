@@ -8,7 +8,7 @@
 ############
 FC = mpiifx
 CC = mpiicx
-LD = /opt/intel/oneapi/compiler/latest/bin/compiler/lld
+LD = /opt/intel/oneapi/compiler/latest/bin/compiler/ld.lld
 AR = /opt/intel/oneapi/compiler/latest/bin/compiler/llvm-ar
 
 #######################
